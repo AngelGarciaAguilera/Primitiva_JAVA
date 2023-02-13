@@ -14,14 +14,7 @@ public class Boleto {
     
     public Boleto(){
         boletoGanador = new byte[7];
-        for(byte i = 0; i < boletoGanador.length; i++){
-            boletoGanador[i] = (byte) (Math.random()*49+1); //Número random desde 1 a 49
-            for(byte j=0; j < i; j++){
-                if(boletoGanador[i] == boletoGanador[j]){
-                    i--; //Compara el número random actual con el anterior, si son iguales vuelve a randomizar el número actual
-                }
-            }
-        }
+        this.ganadora();
     }
     
     public void ganadora(){
@@ -59,7 +52,16 @@ public class Boleto {
         return complementario;
     }
 
-    public byte[] getBoletoGanador(){
+    /*public byte[] getBoletoGanador(){
         return boletoGanador;
+    }*/
+
+    public String toString(){
+        String cadena = "";
+        
+        for(byte i = 0; i<boletoGanador.length;i++){
+            cadena += boletoGanador[i] + " ";
+        }
+        return cadena;
     }
 }

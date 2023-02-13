@@ -4,7 +4,7 @@
 
 package com.politecnicomalaga.primitiva;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -25,6 +25,8 @@ public class Primitiva {
         boolean repetido = false;
         boolean incorrecto = false;
         
+        
+        
         while(menu){
             System.out.println("-------------------------------------------------");
             System.out.println("");
@@ -33,6 +35,7 @@ public class Primitiva {
             System.out.println("2. Introducir boleto.");
             System.out.println("3. Comprobar boleto.");
             System.out.println("4. Comprobar complementario.");
+            System.out.println("5. Obtener números aleatorios entre un intervalo.");
             System.out.println("Otra tecla: SALIR.");
             System.out.println("");
             System.out.println("-------------------------------------------------");
@@ -83,7 +86,8 @@ public class Primitiva {
 
                 case "3":
                     System.out.println("Tu boleto es: " + boletoIn[0] + " " + boletoIn[1] + " " + boletoIn[2] + " " + boletoIn[3] + " " + boletoIn[4] + " " + boletoIn[5]);
-                    System.out.println("El boleto ganador es: " + Arrays.toString(ganador.getBoletoGanador()));
+                    //System.out.println("El boleto ganador es: " + Arrays.toString(ganador.getBoletoGanador()));
+                    System.out.println("El boleto ganador es: " + ganador.toString());
                     System.out.println("");
 
                     if(ganador.comprobar(boletoIn) == 0){
@@ -125,6 +129,37 @@ public class Primitiva {
                     
                     break;//LISTO
 
+                case "5":
+                    int min, max;
+                    String otra;
+                    int numerobombo;
+                    boolean sigo = true;
+                    
+                    System.out.println("Introduzca un mínimo:");
+                    min = sc.nextInt();
+                    sc.reset();
+                    System.out.println("Introduzca un máximo:");
+                    max = sc.nextInt();
+                    sc.reset();
+                    Bombo numAl = new Bombo(min, max);
+                    
+                    System.out.println("-------------------------------------------------");
+                    System.out.println("Se genera un número aleatorio del intervalo introducido. Cuando el número obtenido sea menor que el número mínimo del intervalo, ya habrán aparecido todos los números pertenecientes a este.");
+                    
+                    do{
+                        System.out.println("Introduzca S para otra bola");
+                        otra = sc.next();
+                        sc.reset();
+                        if("S".equals(otra)){
+                            numerobombo = numAl.sacarNum();
+                            System.out.println(numerobombo);
+                        }else{
+                            System.out.println("Programa finalizado.");
+                            sigo = false;
+                        }
+                    }while(sigo);
+                    break;
+                    
                 default:
                     sc.close(); //Cierro la entrada de teclado.
                     menu = false;
